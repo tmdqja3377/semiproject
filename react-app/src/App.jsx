@@ -4,10 +4,10 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './components/home';
 import { Row, Col } from 'react-bootstrap';
 import Navbar from './components/navbar';
-import Food from './page/food';
-import Drinks from './page/drinks';
-import Dessert from './page/dessert';
-
+import Exercise from './page/exercise';
+import Equipment from './page/equipment';
+import Dailyexercise from './page/dailyexercise';
+import Temporarilymenu from './page/temporarilymenu';
 function App() {
     return (
         <div className="container fluid py-5">
@@ -21,9 +21,10 @@ function App() {
                     <Col xs={12} md={8}>
                         <Routes>
                             <Route path="/" element={<Home />} />
-                            <Route path="/food" element={<Food />} />
-                            <Route path="/drinks" element={<Drinks />} />
-                            <Route path="/dessert" element={<Dessert />} />
+                            <Route path="/exercise" element={<Exercise />} />
+                            <Route path="/equipment" element={<Equipment />} />
+                            <Route path="/dailyexercise" element={<Dailyexercise />} />
+                            <Route path="/temporarilymenu" element={<Temporarilymenu />} />
                         </Routes>
                     </Col>
                 </Row>

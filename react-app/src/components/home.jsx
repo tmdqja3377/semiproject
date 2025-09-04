@@ -3,7 +3,7 @@ import React from 'react';
 function Home() {
     return (
         <div className="home">
-            <h1>메뉴판</h1>
+            <h1>오늘 해야할 운동</h1>
         </div>
     );
 }

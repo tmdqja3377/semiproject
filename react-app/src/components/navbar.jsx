@@ -11,18 +11,20 @@ export default function navbar() {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link as={Link} to="/food">
-                            메인메뉴
+                        <Nav.Link as={Link} to="/exercise">
+                            운동기록
                         </Nav.Link>
-                        <Nav.Link as={Link} to="/drinks">
-                            음료/주류
+                        <Nav.Link as={Link} to="/equipment">
+                            기구관리
                         </Nav.Link>
-                        <Nav.Link as={Link} to="/dessert">
-                            디저트
+                        <Nav.Link as={Link} to="/dailyexercise">
+                            하루운동
                         </Nav.Link>
                     </Nav>
                     <Nav>
-                        <Nav.Link href="#login">주문내역</Nav.Link>
+                        <Nav.Link as={Link} to="/temporarilymenu">
+                            임시메뉴
+                        </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
