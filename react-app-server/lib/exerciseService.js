@@ -104,10 +104,12 @@ const getTodayExercises = () => {
     return new Promise((resolve, reject) => {
         // 한국 시간 기준으로 오늘 요일 구하기
         const today = new Date();
-        const koreanTime = new Date(today.getTime() + 9 * 60 * 60 * 1000); // UTC+9
+        const koreanTime = new Date(today.toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
         const dayNames = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
         const todayDay = dayNames[koreanTime.getDay()];
 
+        console.log('현재 시간:', today);
+        console.log('한국 시간:', koreanTime);
         console.log('오늘 요일:', todayDay);
 
         const sql = 'SELECT * FROM exercise WHERE days = ? ORDER BY created_at DESC';

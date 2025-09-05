@@ -147,6 +147,25 @@ app.get('/api/today-exercises', async (req, res) => {
     }
 });
 
+// 오늘의 운동 조회 API
+app.get('/api/today-exercises', async (req, res) => {
+    try {
+        const result = await exerciseService.getTodayExercises();
+
+        res.status(200).json({
+            success: true,
+            data: result,
+        });
+    } catch (error) {
+        console.error('오늘의 운동 조회 오류:', error);
+        res.status(500).json({
+            success: false,
+            message: '오늘의 운동 조회 중 오류가 발생했습니다.',
+            error: error.message,
+        });
+    }
+});
+
 db.getConnection((err) => {
     if (err) {
         console.error('mysql 연결실패: ', err);
