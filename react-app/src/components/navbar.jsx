@@ -14,6 +14,9 @@ export default function navbar() {
                         <Nav.Link as={Link} to="/exercise">
                             운동기록
                         </Nav.Link>
+                        <Nav.Link as={Link} to="/exercise-list">
+                            운동목록
+                        </Nav.Link>
                         <Nav.Link as={Link} to="/equipment">
                             기구관리
                         </Nav.Link>

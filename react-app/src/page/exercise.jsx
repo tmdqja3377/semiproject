@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 function Exercise() {
-    const [formData, setFormData] = useState({ exname: '', excategory: '', count: '' });
+    const [formData, setFormData] = useState({ exname: '', excategory: '', days: '', count: '' });
 
     const navigate = useNavigate();
 
@@ -15,8 +15,8 @@ function Exercise() {
     };
 
     const check = () => {
-        const { exname, excategory, count } = formData;
-        if (!exname.trim() || !excategory.trim() || !count.trim()) {
+        const { exname, excategory, days, count } = formData;
+        if (!exname.trim() || !excategory.trim() || !days.trim() || !count.trim()) {
             alert('양식에 맞게 모두 입력해주세요');
             return false;
         }
@@ -30,17 +30,15 @@ function Exercise() {
         if (!b) return;
         //alert('ajax요청');
         try {
-            //post방식으로 요청. 회원데이터를 body포함시켜야함, headers에 'Content-Type'을 'application/json'으로 설정
-            const url = `http://localhost:5000/api/exercise`; //백엔드 서버
-            //cors 문제 발생 리액트 서버: 5173포트. 백엔드:7777
+            const url = `http://localhost:5000/api/exercise`;
             const response = await axios.post(url, formData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
             });
-            //alert(JSON.stringify(response));
+            console.log(JSON.stringify(response));
             if (response.status === 200) {
-                alert('저장완료료');
+                alert('저장완료');
                 navigate('/');
             }
         } catch (error) {
@@ -49,15 +47,11 @@ function Exercise() {
     };
 
     const handleReset = () => {
-        setFormData({ exname: '', excategory: '', count: '' });
+        setFormData({ exname: '', excategory: '', days: '', count: '' });
     };
 
     return (
         <div>
-            <Button>운동추가</Button>
-            <Button>운동수정</Button>
-            <Button>운동삭제</Button>
-
             <div className="container py-4">
                 <h1 className="text-center my-4">운동 관리</h1>
                 <Form onSubmit={handleSubmit}>
@@ -83,12 +77,30 @@ function Exercise() {
                         <Col sm={8}>
                             <Form.Select name="excategory" value={formData.excategory} onChange={handleChange}>
                                 <option value="">::운동부위::</option>
-                                <option value="chest">가슴</option>
-                                <option value="row">등</option>
-                                <option value="sholder">어깨</option>
-                                <option value="leg">하체</option>
-                                <option value="arm">팔</option>
-                                <option value="etc">기타</option>
+                                <option value="가슴">가슴</option>
+                                <option value="등">등</option>
+                                <option value="어깨">어깨</option>
+                                <option value="하체">하체</option>
+                                <option value="팔">팔</option>
+                                <option value="기타">기타</option>
+                            </Form.Select>
+                        </Col>
+                    </Form.Group>
+
+                    <Form.Group as={Row} className="mb-3">
+                        <Form.Label column sm={2}>
+                            운동요일
+                        </Form.Label>
+                        <Col sm={8}>
+                            <Form.Select name="days" value={formData.days} onChange={handleChange}>
+                                <option value=""> ::운동요일:: </option>
+                                <option value="월요일"> 월요일 </option>
+                                <option value="화요일"> 화요일 </option>
+                                <option value="수요일"> 수요일 </option>
+                                <option value="목요일"> 목요일 </option>
+                                <option value="금요일"> 금요일 </option>
+                                <option value="토요일"> 토요일 </option>
+                                <option value="일요일"> 일요일 </option>
                             </Form.Select>
                         </Col>
                     </Form.Group>
